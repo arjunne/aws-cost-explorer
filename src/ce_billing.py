@@ -218,6 +218,7 @@ def report_cost(event, context, result: dict = None, yesterday: str = None, new_
         
     s3 = boto3.resource('s3')
     bucket = os.environ.get('BUCKET', 'ciexchange')
+    upload = s3.Bucket(bucket)
 
     with open('/tmp/summary.txt', 'a') as data:
         data.write(summary + "\n")
@@ -225,7 +226,7 @@ def report_cost(event, context, result: dict = None, yesterday: str = None, new_
         data.write(buffer)
     filename = datetime.datetime.now().strftime("%Y_%m_%d")
     
-    bucket.upload_file('/tmp/summary.txt', f"report/{filename}.txt")
+    upload.upload_file('/tmp/summary.txt', f"report/{filename}.txt")
     
     # for running locally to test output
     return cost_per_day_by_service, summary, buffer
