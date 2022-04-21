@@ -64,3 +64,5 @@ The webhook url, logging info, bucket, etc are added as environment variable, if
 To add tags to your resources, go to app.py and for app level tags you can use, Tags.of(app).add('Account', 'Personal').  For resource level, go to the cost_explorer_stack.py where you can add the tags for the resource you're interested in.
 
 Credits: https://github.com/iandees/aws-billing-to-slack
+
+[![cost-notifications.png](https://i.postimg.cc/X7ff2NyY/cost-notifications.png)](https://postimg.cc/3dw0NTBs)
