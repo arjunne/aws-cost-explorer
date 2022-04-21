@@ -1,7 +1,7 @@
 
-# Welcome to your CDK Python project!
+# Welcome to Cost Explorer CDK Python project!
 
-This is a blank project for Python development with CDK.
+This is a project for Python development with CDK.  The project contains python code that sends daily breakdown of costs to teams or slack channels, you may also choose to write it to s3.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
@@ -56,3 +56,11 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+## Environment Variables
+
+The webhook url, logging info, bucket, etc are added as environment variable, if you want any of these modified head over to cost_explorer_stack.py cdkstack which contains the cdk construct for all the resources used to set this up.  Update the varaibles and you should be good to go!
+
+To add tags to your resources, go to app.py and for app level tags you can use, Tags.of(app).add('Account', 'Personal').  For resource level, go to the cost_explorer_stack.py where you can add the tags for the resource you're interested in.
+
+Credits: https://github.com/iandees/aws-billing-to-slack
