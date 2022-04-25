@@ -3,7 +3,9 @@ from aws_cdk import (
     Stack,
     aws_lambda as lambda_,
     aws_iam as iam,
-    aws_s3 as s3
+    aws_s3 as s3,
+    aws_events as events,
+    aws_events_targets as targets
     # aws_sqs as sqs,
 )
 from constructs import Construct
@@ -61,3 +63,8 @@ class CostExplorerStack(Stack):
             role=cost_explorer_lambda_role
         )
 
+        invoke_rule = events.Schedule.cron(hour='22', minute='0', month='*', year='*')
+
+        lambda_target = targets.LambdaFunction(handler=cost_explorer_lambda)
+
+        event = events.Rule(self, "InvokeRule", schedule=invoke_rule, targets=[lambda_target])
